@@ -1,4 +1,4 @@
-Stock Market Data Cleaning & Visualization
+Stock Market Data Cleaning & Visualization:
 This project demonstrates cleaning, aggregating, and visualizing stock market data using Python (pandas), Parquet files, and Streamlit. The dashboard helps users interactively analyze stock metrics for multiple tickers and sectors.
 
 Table of Contents
