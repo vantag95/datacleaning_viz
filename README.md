@@ -1,105 +1,78 @@
-Stock Market Data Cleaning & Visualization:
-This project demonstrates cleaning, aggregating, and visualizing stock market data using Python (pandas), Parquet files, and Streamlit. The dashboard helps users interactively analyze stock metrics for multiple tickers and sectors.
+**Stock Market Data Cleaning & Visualization :**
 
-Table of Contents
-Overview
+This project demonstrates a complete workflow for cleaning, aggregating, and visualizing stock market data using Python, pandas, Parquet, and Streamlit. The interactive dashboard allows users to explore stock prices, volumes, sectors, and daily returns efficiently.
 
-Setup & Installation
+**Table of Contents :**
 
-Data Cleaning & Schema
+- Overview
+- Setup & Installation
+- Data Cleaning & Schema
+- Aggregations
+- Dashboard Usage
+- Screenshots
+- Project Structure
 
-Aggregations
+**Overview :**
 
-Dashboard Usage
+This assignment covers the full data-processing pipeline:
 
-Screenshots
+- Cleaning raw financial CSV files
+- Normalizing schema (headers, missing values, text case)
+- Aggregating meaningful financial metrics
+- Building an interactive Streamlit dashboard for visual analysis
 
-Project Structure
+**Setup & Installation :**
 
-Overview
-This assignment covers:
+Requirements
 
-Cleaning raw financial CSV data
+- Python 3.8+
+- pandas
+- pyarrow
+- streamlit
 
-Normalizing schema (standardized columns, missing values, text case, etc.)
-
-Aggregating useful metrics (average prices, volumes, returns)
-
-Interactive visualization using Streamlit
-
-Setup & Installation
-
-Requirements:
-
-Python 3.8+
-
-pandas
-
-pyarrow
-
-streamlit
-
-Installation instructions:
+**Install Dependencies**
 
 pip install pandas pyarrow streamlit
 
-Data Cleaning & Schema
-Steps performed:
+**Data Cleaning & Schema :**
 
-Renamed headers to snake_case
+Cleaning steps performed:
 
-Trimmed whitespace on headers & values
+- Renamed column headers to snake_case
+- Trimmed whitespace in column names and data fields
+- Standardized text case
+  	- Tickers → UPPERCASE
+  	- Sectors → Title Case
+- Normalized missing values ("", "NA", "N/A", "null", "-") into pd.NA
+- Converted date columns to YYYY-MM-DD
+- Converted numeric columns (prices, volume) to float
+- Removed duplicate rows
 
-Standardized text case (tickers uppercase, sectors title case)
+**Output:**
 
-Standardized all missing values ("", NA, N/A, null, -) to pd.NA
+cleaned.parquet — fully cleaned and normalized dataset.
 
-Converted dates to yyyy-MM-dd
+**Aggregations :**
 
-Converted number columns to float (prices, volume)
+The following analytics Parquet files are generated:
 
-Deduplicated rows
+File	Description
+agg1.parquet :	Daily average close price by ticker
+agg2.parquet	: Average trading volume grouped by sector
+agg3.parquet	: Simple daily return calculated per ticker
 
-Output: cleaned.parquet
+**Dashboard Usage :**
 
-Aggregations
-
-Aggregates computed from cleaned data and saved as Parquet:
-
-agg1.parquet: Daily average close price by ticker
-
-agg2.parquet: Average volume by sector
-
-agg3.parquet: Simple daily return by ticker
-
-Dashboard Usage
-
-Run the cleaning and aggregation notebook to produce parquet outputs.
-
-Start the Streamlit app:
+After generating all Parquet files through the cleaning notebook, run the dashboard:
 
 streamlit run app.py
 
-Interact with:
+**Dashboard Features**
 
-Ticker, date range: Line chart of daily close
+- Ticker & Date Range Selection → Line chart of daily close price
+- Sector-Based View → Bar chart of average volume
+- Returns Analysis → Line chart showing daily returns per ticker
 
-Sector: Bar chart of average volume
+**Screenshots :**
 
-Daily return: Line chart by ticker
-
-Screenshots:
-
-You can find dashboard screenshots in the /screenshots folder, showing various filtered and charted outputs.
-
-Project Structure
-
-/datacleaning_viz
- ├─ data_cleaning.ipynb        # Data cleaning & aggregation notebook
- ├─ cleaned.parquet           # Cleaned, normalized dataset
- ├─ agg1.parquet              # Daily avg close by ticker
- ├─ agg2.parquet              # Avg volume by sector
- ├─ agg3.parquet              # Daily return by ticker
- ├─ app.py                    # Streamlit dashboard
- ├─ README.md                 # Project documentation
- └─ /screenshots              # Images of dashboard and visualizations
+Dashboard screenshots are available in the /screenshots directory, showcasing filtered charts, sector comparisons, and return visualizations.
